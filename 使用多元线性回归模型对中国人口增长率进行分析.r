@@ -1,5 +1,3 @@
-# 张博强 大数据2班 32019070233
-
 # 读取中国自然增长率及其相关顺序
 dat = read.csv("中国自然增长率及相关数据.csv")
 # 删除数据中不需要的列
@@ -17,6 +15,9 @@ cor(dat)
 # 拟合多元线性回归
 fit=lm(y~.,data=dat)
 fit
+
+par(mfrow=c(2,2))
+plot(fit)
 # Call:
 # lm(formula = y ~ ., data = data)
 # Coefficients:
@@ -52,13 +53,14 @@ anova(fit)
 # x4	1	13.022146	13.0221462	15.756488	1.233689e-03
 # Residuals	15	12.396937	0.8264625	NA	NA
 
+
 # 相关系数矩阵可视化
 library("PerformanceAnalytics")
 chart.Correlation(data[,-1], histogram=TRUE, pch=19)
 
 
 library("car")
-vif(lm6.6)
+vif(fit)
 
 # x2一元回归
 fit = lm(y~x2)
